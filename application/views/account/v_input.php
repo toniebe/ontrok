@@ -1,0 +1,399 @@
+<?php
+ defined('BASEPATH') OR exit('No direct script access allowed');
+ ?><!DOCTYPE html>
+ <html>
+ <head>
+   <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/logo-tangan1.png">
+   <meta charset="UTF-8">
+   <title> Input Data | TREG</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+ <script>
+     function sum() {
+         var txtFirstNumberValue = document.getElementById('bil1').value;
+         var txtSecondNumberValue = document.getElementById('bil2').value;
+         var txtTigaNumberValue = document.getElementById('bil3').value;
+         var txtfourNumberValue = document.getElementById('bil4').value;
+         var result = parseFloat(txtFirstNumberValue) + parseFloat(txtSecondNumberValue) + parseFloat(txtTigaNumberValue) + parseFloat(txtfourNumberValue);
+         if (!isNaN(result)) {
+            document.getElementById('bil5').value = result;
+         }
+   }
+   </script>
+ <style>
+ ul li a:hover{
+   background:gray;
+ }
+* {
+ box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+ width: 100%;
+ padding: 12px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ resize: vertical;
+}
+
+label {
+ padding: 12px 12px 12px 0;
+ display: inline-block;
+font-size:18px;
+}
+
+input[type=submit] {
+ background-color: #4CAF50;
+ color: white;
+ padding: 12px 20px;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ float: center;
+}
+
+input[type=submit]:hover {
+ background-color: #45a049;
+}
+
+
+
+.col-25 {
+ float: left;
+ width: 25%;
+ margin-top: 6px;
+}
+
+.col-75 {
+ float: left;
+ width: 65%;
+ margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+ content: "";
+ display: table;
+ clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+ .col-25, .col-75, input[type=submit] {
+     width: 100%;
+     margin-top: 0;
+ }
+}
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* pop up */
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  margin-top:260px;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+  width: 70%;
+  }
+  .popup{
+  width: 70%;
+  }
+}
+/* pop up end */
+
+      /* The Modal (background) */
+      .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 300px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 30%;
+      }
+
+      /* The Close Button */
+      .close {
+          color: #000;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+      }
+</style>
+ </head>
+ <body>
+   <?php $this->load->view('account/navbar') ?>
+     <hr>
+     <div class="row" align="center">
+     <div class="col" style="background:white; font-family:arial; padding:60px; font-size:30px;">
+       Input ODP
+     </div>
+   </div>
+   <div class="container">
+       <?php echo form_open('C_Input/create');?>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">NOSS_ID</label>
+         </div>
+         <div class="col-75">
+         <input type="text" name="NOSS_ID" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="lname">ODP_INDEX</label>
+         </div>
+         <div class="col-75">
+         <input type="text"  name="ODP_INDEX" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">ODP_NAME</label>
+         </div>
+         <div class="col-75">
+         <input type="text" name="ODP_NAME" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">LATITUDE</label>
+         </div>
+         <div class="col-75">
+         <input type="text" name="LATITUDE" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">LONGITUDE</label>
+         </div>
+         <div class="col-75">
+         <input type="text" name="LONGITUDE" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">CLUSNAME</label>
+         </div>
+         <div class="col-75">
+         <input type="text" name="CLUSNAME" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">CLUSTERSTATUS</label>
+         </div>
+         <div class="col-75">
+         <input type="text" name="CLUSTERSTATUS" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">AVAI</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="bil1" onchange="sum();" name="AVAI" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">USED</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="bil2" onchange="sum();" name="USED" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">RSK</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="bil3" onchange="sum();" name="RSK" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">RSV</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="bil4" onchange="sum();" name="RSV" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">IS TOTAL</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="bil5" name="IS_TOTAL" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">REGIONAL</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="REGIONAL" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">WITEL</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="WITEL" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">DATEL</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="DATEL">
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">STO</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="STO" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">STO_DESC</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="STO_DESC" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">ODP_INFO</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="ODP_INFO" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">UPDATE DATE</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="UPDATE_DATE" >
+         </div>
+       </div>
+       <div class="row" align="center">
+         <div class="col-25">
+         <label for="fname">KETERANGAN</label>
+         </div>
+         <div class="col-75">
+         <input type="text" id="fname" name="KETERANGAN">
+         </div>
+       </div>
+       <br>
+       <div class="row" align="center">
+         <div class="col">
+           <input type="submit" value="Submit">
+         </div>
+       </div>
+       </form>
+</div>
+<br>
+<br>
+     <footer align="center" style="background: #f1f1f1; padding:15px;">
+       Copyright &copy; 2018 - PT Telkom Indonesia
+     </footer>
+ </body>
+ </html>
